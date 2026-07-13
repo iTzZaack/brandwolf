@@ -2,18 +2,17 @@
 <html lang="es">
 <head>
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MZ3ZM95K');</script>
-<!-- End Google Tag Manager -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brand Wolf - Servicios</title>
-<style>
-
-         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', 'Segoe UI', Helvetica, Arial, sans-serif; }
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MZ3ZM95K');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Wolf - Servicios</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', 'Segoe UI', Helvetica, Arial, sans-serif; }
         body { background-color: #f4f6f8; color: #333333; overflow-x: hidden; }
 
         /* HEADER */
@@ -29,7 +28,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-bottom: 1px solid #1a231c;
         }
         .logo-box { display: flex; align-items: center; gap: 10px; }
-        .logo-nav { height: 80px; width: auto; }
+        .logo-nav { height: 80px; width: auto; max-width: 100%; object-fit: contain; }
         nav { display: flex; gap: 25px; }
         nav a { color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: #4ed924; border-bottom: 2px solid #4ed924; padding-bottom: 4px; }
@@ -261,7 +260,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 20px;
         }
 
-        /* SVG verde para los iconos */
         .card-icon-box svg {
             width: 28px;
             height: 28px;
@@ -280,29 +278,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: #666666;
             line-height: 1.5;
         }
-
-        /* RESPONSIVO (TABLETAS Y CELULARES) */
-        @media (max-width: 1024px) {
-            .service-card { width: 48%; margin-bottom: 20px; }
-            .metrics-bar { flex-wrap: wrap; gap: 20px; }
-            .metric-item { width: 45%; }
-        }
-
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; padding: 20px; }
-            nav { gap: 15px; }
-            .hero-section { flex-direction: column-reverse; text-align: center; padding: 50px 5%; }
-            .hero-left, .hero-right { max-width: 100%; }
-            .hero-left h1 { font-size: 34px; }
-            .hero-buttons { justify-content: center; flex-direction: column; }
-            .hero-right { margin-bottom: 40px; }
-            .metric-item { width: 100%; }
-            .service-card { width: 100%; }
-        }
-
-        /* =====================================================
-           BLOQUE AÑADIDO — no toca nada de lo que ya existía
-           ===================================================== */
 
         /* --- Slot de imagen reutilizable con placeholder automático --- */
         .img-slot {
@@ -348,19 +323,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 10px;
         }
 
-        /* =====================================================
-           BLOQUE AÑADIDO 2 — contenido para la página SERVICIOS
-           según la imagen de referencia (no modifica nada arriba)
-           ===================================================== */
-
-        /* Logo de texto (mientras no hay archivo de logo final) */
+        /* Logo de texto */
         .logo-text-group { display: flex; flex-direction: column; line-height: 1.1; }
         .logo-text-group .logo-title { color: #ffffff; font-size: 19px; font-weight: 800; letter-spacing: 0.5px; }
         .logo-text-group .logo-title span { color: #4ed924; }
         .logo-text-group .logo-sub { color: #8da390; font-size: 9.5px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
         .logo-icon-wrap { width: 46px; height: 46px; }
 
-        /* Tarjetas de servicio a 6 columnas (reutiliza .service-card, solo ajusta el ancho) */
+        /* Tarjetas de servicio a 6 columnas */
         .cards-container-6 { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
         .cards-container-6 .service-card { width: 15.5%; min-width: 190px; }
 
@@ -407,6 +377,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: all 0.3s ease;
         }
         .btn-banner:hover { background: #4ed924; transform: translateY(-2px); }
+
         /* FOOTER */
         .site-footer { background-color: #0b0f0c; color: #b3bfae; padding: 60px 8% 25px; }
         .footer-grid { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 35px; border-bottom: 1px solid #1a231c; }
@@ -422,22 +393,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .footer-social a:hover svg { fill: #4ed924; }
         .footer-bottom { padding-top: 20px; font-size: 12px; color: #6c7a70; text-align: center; }
 
+        /* RESPONSIVO (TABLETAS Y CELULARES) */
         @media (max-width: 1024px) {
+            .service-card { width: 48%; margin-bottom: 20px; }
+            .metrics-bar { flex-wrap: wrap; gap: 20px; }
+            .metric-item { width: 45%; }
             .cards-container-6 .service-card { width: 46%; }
         }
+
         @media (max-width: 768px) {
+            header { 
+                flex-direction: column; 
+                gap: 12px; 
+                padding: 15px 10px; 
+            }
+            .logo-nav { 
+                height: 45px; /* Reducimos el logo para que no se coma la pantalla */
+            }
+            nav { 
+                gap: 12px; 
+                flex-wrap: wrap; 
+                justify-content: center; 
+            }
+            nav a {
+                font-size: 13px;
+            }
+            .btn-contact-nav {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            .hero-section { flex-direction: column-reverse; text-align: center; padding: 50px 5%; }
+            .hero-left, .hero-right { max-width: 100%; }
+            .hero-left h1 { font-size: 34px; }
+            .hero-buttons { justify-content: center; flex-direction: column; }
+            .hero-right { margin-bottom: 40px; }
+            .metric-item { width: 100%; }
+            .service-card { width: 100%; }
             .cards-container-6 .service-card { width: 100%; }
             .project-banner { flex-direction: column; text-align: center; margin: 0 5% 40px; }
         }
-
-</style>
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZ3ZM95K"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<header>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZ3ZM95K"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header>
         <div class="logo-box">
             <img class="logo-nav" src="Multimedia/logoblanco.png" alt="Brand Wolf Logo"
                 onerror="this.replaceWith(Object.assign(document.createElement('span'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;'}))">
@@ -474,7 +477,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- SERVICIOS: TARJETAS -->
     <div class="services-section">
         <div class="cards-container-6">
-
             <!-- 1 -->
             <div class="service-card">
                 <div class="card-icon-box">
@@ -534,7 +536,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p>Analizamos tu negocio y diseñamos planes a medida para ayudarte a crecer de forma sostenible.</p>
                 <a href="contacto.html" class="btn-more-info">Quiero más información →</a>
             </div>
-
         </div>
     </div>
 
@@ -592,7 +593,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 
-<!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
@@ -616,7 +617,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="footer-col">
                 <h5>Contacto</h5>
                 <p>brandwolf2244@gmail.com</p>
-                <p>+593 99 457 4637</p>
+                <p>+593 99 457 4637</p>
                 <p>Quito, Ecuador</p>
             </div>
         </div>
