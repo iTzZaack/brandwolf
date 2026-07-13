@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Wolf - Servicios</title>
+<style>
+
+         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', 'Segoe UI', Helvetica, Arial, sans-serif; }
+        body { background-color: #f4f6f8; color: #333333; overflow-x: hidden; }
+
+        /* HEADER */
+        header {
+            background-color: #0b0f0c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1a231c;
+        }
+        .logo-box { display: flex; align-items: center; gap: 10px; }
+        .logo-nav { height: 80px; width: auto; }
+        nav { display: flex; gap: 25px; }
+        nav a { color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+        nav a:hover, nav a.active { color: #4ed924; border-bottom: 2px solid #4ed924; padding-bottom: 4px; }
+        .btn-contact-nav {
+            background-color: #3ca61c; color: white; padding: 10px 20px; border-radius: 20px;
+            font-size: 14px; font-weight: bold; text-decoration: none; transition: background 0.3s, transform 0.2s;
+        }
+        .btn-contact-nav:hover { background-color: #4ed924; transform: translateY(-2px); }
+
+        /* 2. SECCIÓN HERO (ZONA OSCURA PRINCIPAL) */
+        .hero-section {
+            background: linear-gradient(135deg, #050806 0%, #111a13 50%, #080d09 100%);
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 550px;
+            position: relative;
+        }
+
+        /* Capa sutil de textura/fondo */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 80% 50%, rgba(78, 217, 36, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-left {
+            max-width: 55%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tagline {
+            color: #4ed924;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            border-left: 3px solid #4ed924;
+            padding-left: 10px;
+        }
+
+        .hero-left h1 {
+            color: #ffffff;
+            font-size: 48px;
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-left h1 span {
+            color: #4ed924;
+        }
+
+        .hero-left p {
+            color: #b3bfae;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-hero {
+            padding: 14px 28px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-hero-primary {
+            background-color: #3ca61c;
+            color: #ffffff;
+        }
+
+        .btn-hero-primary:hover {
+            background-color: #4ed924;
+            box-shadow: 0 5px 20px rgba(78, 217, 36, 0.4);
+        }
+
+        .btn-hero-secondary {
+            border: 1px solid #334735;
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-hero-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: #557358;
+        }
+
+        .hero-right {
+            max-width: 40%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-main-img {
+            max-width: 110%;
+            height: auto;
+            filter: drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.7));
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 3. SUB-BARRA DE MÉTRICAS (BOTOM HERO) */
+        .metrics-bar {
+            background-color: rgba(10, 15, 11, 0.85);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #1c2b1e;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            color: #ffffff;
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 23%;
+        }
+
+        .metric-icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-text h4 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .metric-text p {
+            font-size: 12px;
+            color: #8da390;
+        }
+
+        /* 4. SECCIÓN SERVICIOS (TARJETAS BLANCAS) */
+        .services-section {
+            padding: 80px 8%;
+            text-align: center;
+            background-color: #f8faf9;
+        }
+
+        .services-section subtitle {
+            color: #3ca61c;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .services-section h2 {
+            font-size: 32px;
+            color: #0b0f0c;
+            font-weight: 800;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .services-section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #3ca61c;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 30px 25px;
+            width: 23.5%;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #eaeaea;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(60, 166, 28, 0.12);
+            border-color: rgba(60, 166, 28, 0.2);
+        }
+
+        .card-icon-box {
+            width: 55px;
+            height: 55px;
+            background-color: #edf9eb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* SVG verde para los iconos */
+        .card-icon-box svg {
+            width: 28px;
+            height: 28px;
+            fill: #3ca61c;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            color: #0b0f0c;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            font-size: 13.5px;
+            color: #666666;
+            line-height: 1.5;
+        }
+
+        /* RESPONSIVO (TABLETAS Y CELULARES) */
+        @media (max-width: 1024px) {
+            .service-card { width: 48%; margin-bottom: 20px; }
+            .metrics-bar { flex-wrap: wrap; gap: 20px; }
+            .metric-item { width: 45%; }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 20px; }
+            nav { gap: 15px; }
+            .hero-section { flex-direction: column-reverse; text-align: center; padding: 50px 5%; }
+            .hero-left, .hero-right { max-width: 100%; }
+            .hero-left h1 { font-size: 34px; }
+            .hero-buttons { justify-content: center; flex-direction: column; }
+            .hero-right { margin-bottom: 40px; }
+            .metric-item { width: 100%; }
+            .service-card { width: 100%; }
+        }
+
+        /* =====================================================
+           BLOQUE AÑADIDO — no toca nada de lo que ya existía
+           ===================================================== */
+
+        /* --- Slot de imagen reutilizable con placeholder automático --- */
+        .img-slot {
+            position: relative;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #eef2ef;
+        }
+        .img-slot img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-placeholder {
+            display: none;
+            position: absolute;
+            inset: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+            padding: 20px;
+            background: repeating-linear-gradient(135deg, #eef2ef, #eef2ef 10px, #e4e9e5 10px, #e4e9e5 20px);
+            border: 2px dashed #b9c6bc;
+            color: #5c6b60;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .img-placeholder svg { width: 30px; height: 30px; fill: #8da390; }
+        .img-placeholder span.file { color: #3ca61c; font-family: monospace; font-size: 12px; }
+
+        /* --- Eyebrow / subtítulo genérico reutilizable --- */
+        .eyebrow {
+            color: #3ca61c;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* =====================================================
+           BLOQUE AÑADIDO 2 — contenido para la página SERVICIOS
+           según la imagen de referencia (no modifica nada arriba)
+           ===================================================== */
+
+        /* Logo de texto (mientras no hay archivo de logo final) */
+        .logo-text-group { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-text-group .logo-title { color: #ffffff; font-size: 19px; font-weight: 800; letter-spacing: 0.5px; }
+        .logo-text-group .logo-title span { color: #4ed924; }
+        .logo-text-group .logo-sub { color: #8da390; font-size: 9.5px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+        .logo-icon-wrap { width: 46px; height: 46px; }
+
+        /* Tarjetas de servicio a 6 columnas (reutiliza .service-card, solo ajusta el ancho) */
+        .cards-container-6 { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+        .cards-container-6 .service-card { width: 15.5%; min-width: 190px; }
+
+        /* Botón "Quiero más información" tipo pastilla, outline verde */
+        .btn-more-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #cfe3c9;
+            color: #3ca61c;
+            background: #ffffff;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 10px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-more-info:hover { background: #edf9eb; border-color: #3ca61c; }
+
+        /* Banner "¿Tienes un proyecto en mente?" */
+        .project-banner {
+            margin: 0 8% 60px;
+            background: #eaf6e4;
+            border-radius: 18px;
+            padding: 22px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .project-banner-left { display: flex; align-items: center; gap: 18px; }
+        .project-banner-icon {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: #12331a; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .project-banner-icon svg { width: 22px; height: 22px; fill: #4ed924; }
+        .project-banner h4 { font-size: 17px; color: #0b0f0c; font-weight: 800; margin-bottom: 4px; }
+        .project-banner p { font-size: 13.5px; color: #4b584e; }
+        .btn-banner {
+            background: #3ca61c; color: #fff; text-decoration: none; font-weight: 700; font-size: 14px;
+            padding: 13px 24px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-banner:hover { background: #4ed924; transform: translateY(-2px); }
+        /* FOOTER */
+        .site-footer { background-color: #0b0f0c; color: #b3bfae; padding: 60px 8% 25px; }
+        .footer-grid { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 35px; border-bottom: 1px solid #1a231c; }
+        .footer-col { flex: 1; min-width: 200px; }
+        .footer-logo { height: 40px; margin-bottom: 14px; }
+        .footer-col h5 { color: #ffffff; font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+        .footer-col p, .footer-col a { display: block; color: #b3bfae; font-size: 13px; text-decoration: none; margin-bottom: 10px; line-height: 1.6; }
+        .footer-col a:hover { color: #4ed924; }
+        .footer-social { display: flex; gap: 12px; margin-top: 6px; }
+        .footer-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #263528; display: flex; align-items: center; justify-content: center; margin-bottom: 0; }
+        .footer-social svg { width: 16px; height: 16px; fill: #b3bfae; }
+        .footer-social a:hover { border-color: #4ed924; }
+        .footer-social a:hover svg { fill: #4ed924; }
+        .footer-bottom { padding-top: 20px; font-size: 12px; color: #6c7a70; text-align: center; }
+
+        @media (max-width: 1024px) {
+            .cards-container-6 .service-card { width: 46%; }
+        }
+        @media (max-width: 768px) {
+            .cards-container-6 .service-card { width: 100%; }
+            .project-banner { flex-direction: column; text-align: center; margin: 0 5% 40px; }
+        }
+
+</style>
+</head>
+<body>
+<header>
+        <div class="logo-box">
+            <img class="logo-nav" src="Multimedia/logoblanco.png" alt="Brand Wolf Logo"
+                onerror="this.replaceWith(Object.assign(document.createElement('span'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;'}))">
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html" class="active">Servicios</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="nuestrostrabajos.html">Nuestros Trabajos</a>
+            <a href="recursos.html">Recursos</a>
+        </nav>
+        <a href="contacto.html" class="btn-contact-nav">Contáctanos →</a>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero-section">
+        <div class="hero-left">
+            <span class="tagline">Servicios</span>
+            <h1>SERVICIOS QUE <span>IMPULSAN</span> TU MARCA</h1>
+            <p>Soluciones creativas y estratégicas para conectar tu marca con las personas correctas y generar <strong style="color:#4ed924;">resultados reales.</strong></p>
+        </div>
+        <div class="hero-right">
+            <div class="img-slot" style="aspect-ratio: 1/1; max-width: 420px; background: transparent;">
+                <img src="Multimedia/logosimple.png" alt="Brand Wolf" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder" style="border-radius: 16px;">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <span>Ilustración: cabeza de lobo (isotipo grande)</span>
+                    <span class="file">images/brand-wolf-icono.png</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICIOS: TARJETAS -->
+    <div class="services-section">
+        <div class="cards-container-6">
+
+            <!-- 1 -->
+            <div class="service-card">
+                <div class="card-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg>
+                </div>
+                <h3>1. Creación y Renovación de Marcas</h3>
+                <p>Diseñamos marcas con propósito, identidad y personalidad para que destaquen y conecten.</p>
+                <a href="contacto.html" class="btn-more-info">Quiero más información →</a>
+            </div>
+
+            <!-- 2 -->
+            <div class="service-card">
+                <div class="card-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-5 19c-.83 0-1.5-.67-1.5-1.5S11.17 18 12 18s1.5.67 1.5 1.5S12.83 21 12 21zM12 6.5c-1.4 0-2.6.8-3.2 2l1.3.7c.4-.7 1.1-1.2 1.9-1.2.9 0 1.6.6 1.6 1.4 0 .7-.4 1-1.1 1.5-.9.6-1.5 1.2-1.5 2.4h1.5c0-.8.4-1.1 1.2-1.7.7-.5 1.4-1.1 1.4-2.2 0-1.6-1.4-2.9-3.1-2.9z"/></svg>
+                </div>
+                <h3>2. Gestión de Redes Sociales</h3>
+                <p>Administramos tus redes con estrategias de contenido que generan comunidad, interacción y ventas.</p>
+                <a href="contacto.html" class="btn-more-info">Quiero más información →</a>
+            </div>
+
+            <!-- 3 -->
+            <div class="service-card">
+                <div class="card-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M3 11v2c0 .55.45 1 1 1h3l4 4V6L7 10H4c-.55 0-1 .45-1 1zm13.5 1c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                </div>
+                <h3>3. Campañas Publicitarias</h3>
+                <p>Creamos campañas creativas y efectivas en medios digitales para lograr más alcance y conversiones.</p>
+                <a href="contacto.html" class="btn-more-info">Quiero más información →</a>
+            </div>
+
+            <!-- 4 -->
+            <div class="service-card">
+                <div class="card-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                </div>
+                <h3>4. Activaciones y Experiencias de Marca</h3>
+                <p>Diseñamos experiencias que hacen que las personas vivan tu marca y la recuerden siempre.</p>
+                <a href="contacto.html" class="btn-more-info">Quiero más información →</a>
+            </div>
+
+            <!-- 5 -->
+            <div class="service-card">
+                <div class="card-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                </div>
+                <h3>5. Producción de Contenido</h3>
+                <p>Foto, video y diseño que comunican lo mejor de tu marca y conectan con tu audiencia.</p>
+                <a href="contacto.html" class="btn-more-info">Quiero más información →</a>
+            </div>
+
+            <!-- 6 -->
+            <div class="service-card">
+                <div class="card-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                </div>
+                <h3>6. Consultoría y Estrategia de Marketing</h3>
+                <p>Analizamos tu negocio y diseñamos planes a medida para ayudarte a crecer de forma sostenible.</p>
+                <a href="contacto.html" class="btn-more-info">Quiero más información →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BANNER: ¿TIENES UN PROYECTO EN MENTE? -->
+    <div class="project-banner">
+        <div class="project-banner-left">
+            <div class="project-banner-icon">
+                <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 11H6V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
+            </div>
+            <div>
+                <h4>¿Tienes un proyecto en mente?</h4>
+                <p>Hablemos y llevemos tu marca al siguiente nivel.</p>
+            </div>
+        </div>
+        <a href="contacto.html" class="btn-banner">Hablemos de tu proyecto →</a>
+    </div>
+
+    <!-- BARRA DE MÉTRICAS -->
+    <div class="metrics-bar">
+        <div class="metric-item">
+            <div class="metric-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#4ed924"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v6l5.25 3.15.75-1.23-4-2.37V7z"/></svg>
+            </div>
+            <div class="metric-text">
+                <h4>Estrategias</h4>
+                <p>que conectan</p>
+            </div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#4ed924"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div class="metric-text">
+                <h4>Resultados</h4>
+                <p>medibles</p>
+            </div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#4ed924"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg>
+            </div>
+            <div class="metric-text">
+                <h4>Experiencias</h4>
+                <p>que marcan</p>
+            </div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#4ed924"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+            </div>
+            <div class="metric-text">
+                <h4>Marcas</h4>
+                <p>que crecen</p>
+            </div>
+        </div>
+    </div>
+
+<!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img class="footer-logo" src="images/logo-brand-wolf.png" alt="Brand Wolf"
+                     onerror="this.replaceWith(Object.assign(document.createElement('div'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;margin-bottom:14px;'}))">
+                <p>Trade Marketing & Brand Experience.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/brand_wolfff?igsh=MTV3cW95NXZuZWU5cQ%3D%3D&utm_source=qr" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.15.5.5.9 1.11 1.15 1.77.25.64.42 1.37.47 2.43.05 1.06.06 1.42.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.42.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.7 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 0 1 5.45 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.2-8.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4z"/></svg></a>
+                    <a href="https://www.tiktok.com/@brand__wolf?_r=1&_t=ZS-97xwMl4bSvI" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 2h-3v13.2a2.6 2.6 0 1 1-2-2.53V9.6a5.6 5.6 0 1 0 5 5.57V8.8a7.6 7.6 0 0 0 4.5 1.46V7.26A4.5 4.5 0 0 1 16.5 2z"/></svg></a>
+                    <a href="https://wa.me/593994574637?text=Hola%20quiero%20información" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.36A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.08.8.82-3-.19-.31A8 8 0 1 1 12 20zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.63-1.18-1.4-1.31-1.64-.14-.24-.02-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Navegación</h5>
+                <a href="index.html">Inicio</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nuestrostrabajos.html">Nuestros Trabajos</a>
+                <a href="recursos.html">Recursos</a>
+            </div>
+            <div class="footer-col">
+                <h5>Contacto</h5>
+                <p>brandwolf2244@gmail.com</p>
+                <p>+593 99 457 4637</p>
+                <p>Quito, Ecuador</p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Brand Wolf. Todos los derechos reservados.</div>
+    </footer>
+</body>
+</html>

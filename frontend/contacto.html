@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Wolf - Contacto</title>
+<style>
+
+        /* RESETEO Y CONFIGURACIÓN GLOBAL */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #333333;
+            overflow-x: hidden;
+        }
+
+        /* 1. BARRA DE NAVEGACIÓN (HEADER) */
+        header {
+            background-color: #0b0f0c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1a231c;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-nav { height: 80px; width: auto; }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #4ed924;
+            border-bottom: 2px solid #4ed924;
+            padding-bottom: 4px;
+        }
+
+        .btn-contact-nav {
+            background-color: #3ca61c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-contact-nav:hover {
+            background-color: #4ed924;
+            transform: translateY(-2px);
+        }
+
+        /* 2. SECCIÓN HERO (ZONA OSCURA PRINCIPAL) */
+        .hero-section {
+            background: linear-gradient(135deg, #050806 0%, #111a13 50%, #080d09 100%);
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 550px;
+            position: relative;
+        }
+
+        /* Capa sutil de textura/fondo */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 80% 50%, rgba(78, 217, 36, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-left {
+            max-width: 55%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tagline {
+            color: #4ed924;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            border-left: 3px solid #4ed924;
+            padding-left: 10px;
+        }
+
+        .hero-left h1 {
+            color: #ffffff;
+            font-size: 48px;
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-left h1 span {
+            color: #4ed924;
+        }
+
+        .hero-left p {
+            color: #b3bfae;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-hero {
+            padding: 14px 28px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-hero-primary {
+            background-color: #3ca61c;
+            color: #ffffff;
+        }
+
+        .btn-hero-primary:hover {
+            background-color: #4ed924;
+            box-shadow: 0 5px 20px rgba(78, 217, 36, 0.4);
+        }
+
+        .btn-hero-secondary {
+            border: 1px solid #334735;
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-hero-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: #557358;
+        }
+
+        .hero-right {
+            max-width: 40%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-main-img {
+            max-width: 110%;
+            height: auto;
+            filter: drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.7));
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 3. SUB-BARRA DE MÉTRICAS (BOTOM HERO) */
+        .metrics-bar {
+            background-color: rgba(10, 15, 11, 0.85);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #1c2b1e;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            color: #ffffff;
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 23%;
+        }
+
+        .metric-icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-text h4 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .metric-text p {
+            font-size: 12px;
+            color: #8da390;
+        }
+
+        /* 4. SECCIÓN SERVICIOS (TARJETAS BLANCAS) */
+        .services-section {
+            padding: 80px 8%;
+            text-align: center;
+            background-color: #f8faf9;
+        }
+
+        .services-section subtitle {
+            color: #3ca61c;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .services-section h2 {
+            font-size: 32px;
+            color: #0b0f0c;
+            font-weight: 800;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .services-section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #3ca61c;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 30px 25px;
+            width: 23.5%;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #eaeaea;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(60, 166, 28, 0.12);
+            border-color: rgba(60, 166, 28, 0.2);
+        }
+
+        .card-icon-box {
+            width: 55px;
+            height: 55px;
+            background-color: #edf9eb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* SVG verde para los iconos */
+        .card-icon-box svg {
+            width: 28px;
+            height: 28px;
+            fill: #3ca61c;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            color: #0b0f0c;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            font-size: 13.5px;
+            color: #666666;
+            line-height: 1.5;
+        }
+
+        /* RESPONSIVO (TABLETAS Y CELULARES) */
+        @media (max-width: 1024px) {
+            .service-card { width: 48%; margin-bottom: 20px; }
+            .metrics-bar { flex-wrap: wrap; gap: 20px; }
+            .metric-item { width: 45%; }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 20px; }
+            nav { gap: 15px; }
+            .hero-section { flex-direction: column-reverse; text-align: center; padding: 50px 5%; }
+            .hero-left, .hero-right { max-width: 100%; }
+            .hero-left h1 { font-size: 34px; }
+            .hero-buttons { justify-content: center; flex-direction: column; }
+            .hero-right { margin-bottom: 40px; }
+            .metric-item { width: 100%; }
+            .service-card { width: 100%; }
+        }
+
+        /* =====================================================
+           BLOQUE AÑADIDO — no toca nada de lo que ya existía
+           ===================================================== */
+
+        /* --- Slot de imagen reutilizable con placeholder automático --- */
+        .img-slot {
+            position: relative;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #eef2ef;
+        }
+        .img-slot img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-placeholder {
+            display: none;
+            position: absolute;
+            inset: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+            padding: 20px;
+            background: repeating-linear-gradient(135deg, #eef2ef, #eef2ef 10px, #e4e9e5 10px, #e4e9e5 20px);
+            border: 2px dashed #b9c6bc;
+            color: #5c6b60;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .img-placeholder svg { width: 30px; height: 30px; fill: #8da390; }
+        .img-placeholder span.file { color: #3ca61c; font-family: monospace; font-size: 12px; }
+
+        /* --- Eyebrow / subtítulo genérico reutilizable --- */
+        .eyebrow {
+            color: #3ca61c;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* --- 5. ¿QUIÉNES SOMOS? --- */
+        .about-section {
+            padding: 90px 8%;
+            background-color: #ffffff;
+        }
+        .about-grid {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .about-grid .img-slot { flex: 1; aspect-ratio: 4/3; }
+        .about-text { flex: 1; }
+        .about-text h2 {
+            font-size: 30px;
+            color: #0b0f0c;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            font-size: 15px;
+            color: #555f58;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .about-text p strong { color: #0b0f0c; }
+
+        /* --- 6. ¿POR QUÉ ELEGIR BRAND WOLF? --- */
+        .why-section {
+            background-color: #0b0f0c;
+            padding: 90px 8%;
+            text-align: center;
+        }
+        .why-section .eyebrow { color: #4ed924; }
+        .why-section h2 {
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 50px;
+        }
+        .why-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .why-item {
+            width: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+        .why-item .why-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(78, 217, 36, 0.1);
+            border: 1px solid rgba(78, 217, 36, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .why-item .why-icon svg { width: 24px; height: 24px; fill: #4ed924; }
+        .why-item p {
+            color: #d7ded9;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* --- 7. NUESTRO PROCESO --- */
+        .process-section {
+            padding: 90px 8%;
+            background-color: #f8faf9;
+            text-align: center;
+        }
+        .process-section h2 {
+            font-size: 30px;
+            color: #0b0f0c;
+            font-weight: 800;
+            margin-bottom: 55px;
+        }
+        .process-steps {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .process-step {
+            flex: 1;
+            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .process-step .step-num {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #3ca61c;
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .process-step h4 {
+            font-size: 14.5px;
+            color: #0b0f0c;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .process-step p {
+            font-size: 12.5px;
+            color: #737f77;
+            line-height: 1.5;
+        }
+        .process-arrow {
+            align-self: center;
+            margin-top: 20px;
+            color: #b7c4bb;
+            font-size: 20px;
+        }
+
+        /* --- 8. PORTAFOLIO --- */
+        .portfolio-section {
+            padding: 90px 8%;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .portfolio-section h2 {
+            font-size: 30px;
+            color: #0b0f0c;
+            font-weight: 800;
+            margin-bottom: 50px;
+        }
+        .portfolio-grid {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .portfolio-card {
+            width: 31%;
+            min-width: 260px;
+            text-align: left;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #f8faf9;
+            border: 1px solid #eaeaea;
+            transition: all 0.3s ease;
+        }
+        .portfolio-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(60,166,28,0.12); }
+        .portfolio-card .img-slot { aspect-ratio: 4/3; border-radius: 0; }
+        .portfolio-card .portfolio-body { padding: 20px; }
+        .portfolio-card h3 { font-size: 16px; color: #0b0f0c; margin-bottom: 8px; }
+        .portfolio-card p { font-size: 13px; color: #666; margin-bottom: 16px; line-height: 1.5; }
+        .btn-ver-proyecto {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #3ca61c;
+            text-decoration: none;
+        }
+        .btn-ver-proyecto:hover { color: #4ed924; }
+
+        /* --- 9. OPINIONES --- */
+        .testimonials-section {
+            padding: 90px 8%;
+            background-color: #f8faf9;
+            text-align: center;
+        }
+        .testimonials-section h2 {
+            font-size: 30px;
+            color: #0b0f0c;
+            font-weight: 800;
+            margin-bottom: 50px;
+        }
+        .testimonials-grid {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .testimonial-card {
+            width: 30%;
+            min-width: 250px;
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: left;
+        }
+        .testimonial-card .stars { color: #f5b301; font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+        .testimonial-card p.quote { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+        .testimonial-card .author { display: flex; align-items: center; gap: 10px; }
+        .testimonial-card .author .avatar-slot { width: 38px; height: 38px; border-radius: 50%; }
+        .testimonial-card .author span { font-size: 13px; font-weight: 700; color: #0b0f0c; }
+
+        /* --- 10. CTA FINAL --- */
+        .cta-final {
+            background: linear-gradient(120deg, #3ca61c 0%, #4ed924 100%);
+            padding: 70px 8%;
+            text-align: center;
+        }
+        .cta-final h2 {
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 26px;
+        }
+        .btn-cta-final {
+            display: inline-block;
+            background-color: #0b0f0c;
+            color: #ffffff;
+            padding: 16px 34px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-cta-final:hover { background-color: #1a231c; transform: translateY(-2px); }
+
+        /* FOOTER */
+        .site-footer { background-color: #0b0f0c; color: #b3bfae; padding: 60px 8% 25px; }
+        .footer-grid { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 35px; border-bottom: 1px solid #1a231c; }
+        .footer-col { flex: 1; min-width: 200px; }
+        .footer-logo { height: 40px; margin-bottom: 14px; }
+        .footer-col h5 { color: #ffffff; font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+        .footer-col p, .footer-col a { display: block; color: #b3bfae; font-size: 13px; text-decoration: none; margin-bottom: 10px; line-height: 1.6; }
+        .footer-col a:hover { color: #4ed924; }
+        .footer-social { display: flex; gap: 12px; margin-top: 6px; }
+        .footer-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #263528; display: flex; align-items: center; justify-content: center; margin-bottom: 0; }
+        .footer-social svg { width: 16px; height: 16px; fill: #b3bfae; }
+        .footer-social a:hover { border-color: #4ed924; }
+        .footer-social a:hover svg { fill: #4ed924; }
+        .footer-bottom { padding-top: 20px; font-size: 12px; color: #6c7a70; text-align: center; }
+
+        /* --- PÁGINAS INTERNAS: encabezado de página --- */
+        .page-hero {
+            background: linear-gradient(135deg, #050806 0%, #111a13 50%, #080d09 100%);
+            padding: 70px 8% 60px;
+            text-align: center;
+        }
+        .page-hero .eyebrow { justify-content: center; display: flex; }
+        .page-hero h1 { color: #fff; font-size: 40px; font-weight: 800; margin-bottom: 14px; }
+        .page-hero p { color: #b3bfae; font-size: 15px; max-width: 600px; margin: 0 auto; }
+
+        /* --- Formulario de contacto --- */
+        .contact-section { padding: 90px 8%; background: #ffffff; }
+        .contact-grid { display: flex; gap: 60px; flex-wrap: wrap; }
+        .contact-form { flex: 1.2; min-width: 300px; }
+        .contact-form .field { margin-bottom: 18px; }
+        .contact-form label { display: block; font-size: 13px; font-weight: 700; color: #0b0f0c; margin-bottom: 6px; }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1px solid #dfe5e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #f8faf9;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #3ca61c; }
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+        .btn-submit {
+            background: #3ca61c;
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-submit:hover { background: #4ed924; }
+        .contact-info { flex: 1; min-width: 260px; }
+        .contact-info .img-slot { aspect-ratio: 16/10; margin-bottom: 24px; }
+        .contact-info-item { display: flex; gap: 14px; margin-bottom: 20px; }
+        .contact-info-item .ci-icon {
+            width: 42px; height: 42px; border-radius: 10px;
+            background: #edf9eb; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .contact-info-item .ci-icon svg { width: 20px; height: 20px; fill: #3ca61c; }
+        .contact-info-item h5 { font-size: 14px; color: #0b0f0c; margin-bottom: 3px; }
+        .contact-info-item p { font-size: 13px; color: #666; }
+
+        /* --- Blog --- */
+        .blog-section { padding: 90px 8%; background: #f8faf9; text-align: center; }
+        .blog-section h2 { font-size: 30px; color: #0b0f0c; font-weight: 800; margin-bottom: 50px; }
+        .blog-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+        .blog-card {
+            width: 31%; min-width: 260px; text-align: left; background: #fff;
+            border: 1px solid #eaeaea; border-radius: 16px; overflow: hidden; transition: all .3s ease;
+        }
+        .blog-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(60,166,28,0.12); }
+        .blog-card .img-slot { aspect-ratio: 16/10; border-radius: 0; }
+        .blog-card .blog-body { padding: 20px; }
+        .blog-card .blog-date { font-size: 11.5px; color: #3ca61c; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .blog-card h3 { font-size: 16px; color: #0b0f0c; margin-bottom: 10px; line-height: 1.4; }
+        .blog-card p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 14px; }
+
+        /* --- Servicios (página interna) --- */
+        .service-detail { padding: 70px 8%; display: flex; gap: 60px; align-items: center; }
+        .service-detail:nth-child(even) { background: #f8faf9; }
+        .service-detail.reverse { flex-direction: row-reverse; }
+        .service-detail .img-slot { flex: 1; aspect-ratio: 4/3; }
+        .service-detail-text { flex: 1; }
+        .service-detail-text h3 { font-size: 26px; color: #0b0f0c; font-weight: 800; margin-bottom: 14px; }
+        .service-detail-text p { font-size: 14.5px; color: #555f58; line-height: 1.7; margin-bottom: 16px; }
+        .service-detail-text ul { margin: 0 0 24px 0; padding: 0; list-style: none; }
+        .service-detail-text ul li { font-size: 14px; color: #333; margin-bottom: 10px; padding-left: 26px; position: relative; }
+        .service-detail-text ul li::before {
+            content: '✔';
+            color: #3ca61c;
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+        .btn-solicitar {
+            display: inline-block;
+            background: #3ca61c;
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13.5px;
+            text-decoration: none;
+            transition: all .3s ease;
+        }
+        .btn-solicitar:hover { background: #4ed924; }
+
+        /* --- Nosotros: misión/visión/valores/equipo --- */
+        .mv-grid { display: flex; gap: 24px; flex-wrap: wrap; padding: 90px 8%; background: #fff; }
+        .mv-card { flex: 1; min-width: 220px; background: #f8faf9; border: 1px solid #eaeaea; border-radius: 16px; padding: 32px 26px; }
+        .mv-card .mv-icon { width: 50px; height: 50px; border-radius: 12px; background: #edf9eb; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+        .mv-card .mv-icon svg { width: 24px; height: 24px; fill: #3ca61c; }
+        .mv-card h3 { font-size: 17px; color: #0b0f0c; margin-bottom: 10px; }
+        .mv-card p { font-size: 13.5px; color: #666; line-height: 1.6; }
+
+        .team-section { padding: 0 8% 90px; background: #fff; text-align: center; }
+        .team-section h2 { font-size: 30px; color: #0b0f0c; font-weight: 800; margin-bottom: 50px; }
+        .team-grid { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+        .team-card { width: 220px; text-align: center; }
+        .team-card .img-slot { aspect-ratio: 1/1; border-radius: 50%; margin-bottom: 16px; }
+        .team-card h4 { font-size: 15px; color: #0b0f0c; margin-bottom: 4px; }
+        .team-card p { font-size: 12.5px; color: #3ca61c; font-weight: 600; }
+
+        .history-section { padding: 90px 8%; background: #f8faf9; }
+        .history-grid { display: flex; align-items: center; gap: 60px; }
+        .history-grid .img-slot { flex: 1; aspect-ratio: 4/3; }
+        .history-text { flex: 1; }
+        .history-text h2 { font-size: 30px; color: #0b0f0c; font-weight: 800; margin-bottom: 20px; }
+        .history-text p { font-size: 14.5px; color: #555f58; line-height: 1.75; margin-bottom: 16px; }
+
+        /* --- Responsivo para todo lo añadido --- */
+        @media (max-width: 1024px) {
+            .about-grid, .history-grid, .contact-grid, .service-detail, .service-detail.reverse { flex-direction: column; }
+            .portfolio-card, .testimonial-card, .blog-card { width: 47%; }
+            .process-steps { flex-direction: column; align-items: center; gap: 30px; }
+            .process-arrow { transform: rotate(90deg); margin: 0; }
+        }
+        @media (max-width: 768px) {
+            .portfolio-card, .testimonial-card, .blog-card { width: 100%; }
+            .why-grid { gap: 24px; }
+            .why-item { width: 42%; }
+            .footer-grid { flex-direction: column; }
+            .page-hero h1 { font-size: 30px; }
+            .mv-grid { flex-direction: column; }
+        }
+
+    
+</style>
+</head>
+<body>
+<header>
+        <div class="logo-box">
+            <img class="logo-nav" src="Multimedia/logoblanco.png" alt="Brand Wolf Logo"
+                onerror="this.replaceWith(Object.assign(document.createElement('span'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;'}))">
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="nuestrostrabajos.html">Nuestros Trabajos</a>
+            <a href="recursos.html">Recursos</a>
+        </nav>
+        <a href="contacto.html" class="btn-contact-nav">Contáctanos →</a>
+    </header>
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <subtitle class="eyebrow">Contacto</subtitle>
+        <h1>Hablemos de tu marca</h1>
+        <p>Cuéntanos sobre tu negocio and te contactaremos para conversar sobre cómo podemos ayudarte.</p>
+    </div>
+
+    <div class="contact-section">
+        <div class="contact-grid">
+            <div class="contact-form">
+                <!-- FORMULARIO CORREGIDO AQUÍ -->
+                <form onsubmit="alert('¡Enviado correctamente!'); this.reset(); return false;">
+                    <div class="field">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="field">
+                        <label for="correo">Correo</label>
+                        <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+                    </div>
+                    <div class="field">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="09 9999 9999">
+                    </div>
+                    <div class="field">
+                        <label for="empresa">Empresa</label>
+                        <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa">
+                    </div>
+                    <div class="field">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar →</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="img-slot">
+                    <img src="Multimedia/CONTACTANOS/mapa.png" alt="Mapa de ubicación" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+                        <span>Mapa de ubicación (Google Maps embed)</span>
+                        <span class="file">images/mapa-ubicacion.jpg</span>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg></div>
+                    <div><h5>Correo</h5><p>brandwolf2244@gmail.com</p></div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1L6.6 10.8z"/></svg></div>
+                    <div><h5>Teléfono / WhatsApp</h5><p>+593 99 457 4637</p></div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+                    <div><h5>Ubicación</h5><p>Quito, Ecuador</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img class="footer-logo" src="images/logo-brand-wolf.png" alt="Brand Wolf"
+                     onerror="this.replaceWith(Object.assign(document.createElement('div'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;margin-bottom:14px;'}))">
+                <p>Trade Marketing & Brand Experience.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/brand_wolfff?igsh=MTV3cW95NXZuZWU5cQ%3D%3D&utm_source=qr" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.15.5.5.9 1.11 1.15 1.77.25.64.42 1.37.47 2.43.05 1.06.06 1.42.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.42.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.7 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43a4.9 4.9 0 0 1 1.15-1.77 4.9 4.9 0 0 1 1.77-1.15c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.3 2 12 2zm0 4.8A5.2 5.2 0 1 0 12 17.2 5.2 5.2 0 0 0 12 6.8zm0 8.6a3.4 3.4 0 1 1 0-6.8 3.4 3.4 0 0 1 0 6.8zm6.4-8.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Enlaces</h5>
+                <a href="index.html">Inicio</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nuestrostrabajos.html">Nuestros Trabajos</a>
+            </div>
+            <div class="footer-col">
+                <h5>Contacto</h5>
+                <p>Quito, Ecuador</p>
+                <p>brandwolf2244@gmail.com</p>
+                <p>+593 99 457 4637</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Brand Wolf. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

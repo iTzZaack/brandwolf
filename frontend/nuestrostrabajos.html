@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Wolf - Nuestros Trabajos</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', 'Segoe UI', Helvetica, Arial, sans-serif; }
+body { background-color: #f4f6f8; color: #333333; overflow-x: hidden; }
+
+/* HEADER */
+header {
+    background-color: #0b0f0c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #1a231c;
+}
+.logo-box { display: flex; align-items: center; gap: 10px; }
+.logo-nav { height: 80px; width: auto; }
+nav { display: flex; gap: 25px; }
+nav a { color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+nav a:hover, nav a.active { color: #4ed924; border-bottom: 2px solid #4ed924; padding-bottom: 4px; }
+.btn-contact-nav {
+    background-color: #3ca61c; color: white; padding: 10px 20px; border-radius: 20px;
+    font-size: 14px; font-weight: bold; text-decoration: none; transition: background 0.3s, transform 0.2s;
+}
+.btn-contact-nav:hover { background-color: #4ed924; transform: translateY(-2px); }
+
+/* --- Slot de imagen --- */
+.img-slot { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: #eef2ef; }
+.img-slot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.img-placeholder {
+    display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; text-align: center; padding: 20px;
+    background: repeating-linear-gradient(135deg, #eef2ef, #eef2ef 10px, #e4e9e5 10px, #e4e9e5 20px);
+    border: 2px dashed #b9c6bc; color: #5c6b60; font-size: 13px; font-weight: 600;
+}
+.img-placeholder svg { width: 26px; height: 26px; fill: #8da390; }
+.img-placeholder span.file { color: #3ca61c; font-family: monospace; font-size: 11.5px; }
+
+.eyebrow { color: #4ed924; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 10px; }
+
+/* HERO CASOS DE ÉXITO */
+.casos-hero {
+    background: linear-gradient(135deg, #050806 0%, #111a13 50%, #080d09 100%);
+    padding: 70px 8% 40px;
+    position: relative;
+    overflow: hidden;
+}
+.casos-hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(circle at 85% 40%, rgba(78, 217, 36, 0.10) 0%, transparent 55%);
+    pointer-events: none;
+}
+.casos-hero-top { display: flex; justify-content: space-between; align-items: center; gap: 40px; position: relative; z-index: 2; }
+.casos-hero-left { max-width: 45%; }
+.casos-hero-left h1 { color: #ffffff; font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; margin-bottom: 10px; }
+.casos-hero-left h1 span { color: #4ed924; }
+.casos-hero-left .sub { color: #dfe7e1; font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+.casos-hero-left p.desc { color: #b3bfae; font-size: 14px; line-height: 1.6; max-width: 420px; }
+
+.casos-hero-divider {
+    max-width: 28%;
+    border-left: 2px solid #2a3a2c;
+    padding-left: 20px;
+    color: #c9d3ca;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.casos-hero-divider strong { color: #ffffff; }
+
+/* SOLUCIÓN AL CORTE DE IMAGEN: Se amplió el ancho máximo y se quitó el aspecto circular restrictivo */
+.casos-hero-right { max-width: 45%; display: flex; justify-content: center; position: relative; z-index: 2; }
+.casos-hero-right .img-slot { aspect-ratio: auto; background: transparent; border-radius: 0; overflow: visible; }
+.casos-hero-right .img-slot img { max-height: 380px; width: auto; object-fit: contain; }
+
+/* FILTROS */
+.filter-pills {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+    position: relative;
+    z-index: 2;
+}
+.filter-pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid #263528;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filter-pill:hover { border-color: #4ed924; }
+.filter-pill.active { background: #3ca61c; border-color: #3ca61c; }
+
+/* GRID DE CASOS */
+.cases-section { padding: 60px 8% 90px; background-color: #f4f6f8; }
+.cases-grid { display: flex; flex-wrap: wrap; gap: 24px; }
+.case-card {
+    width: calc(33.333% - 16px);
+    min-width: 280px;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    transition: all 0.3s ease;
+}
+.case-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(60,166,28,0.12); }
+.case-card .img-slot { aspect-ratio: 16/10; border-radius: 0; }
+.case-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 3;
+    background: rgba(11,15,12,0.75);
+    color: #4ed924;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(78,217,36,0.4);
+}
+.case-body { padding: 22px 22px 24px; }
+.case-title { font-size: 18px; color: #0b0f0c; font-weight: 800; margin-bottom: 2px; }
+.case-category { font-size: 12px; color: #3ca61c; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 18px; display: block; }
+.case-block { margin-bottom: 16px; }
+.case-block h4 { font-size: 12px; color: #3ca61c; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+.case-block p { font-size: 13px; color: #555f58; line-height: 1.55; }
+.case-stats { display: flex; justify-content: space-between; gap: 8px; margin-top: 18px; padding-top: 18px; border-top: 1px solid #eee; }
+.case-stat { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; flex: 1; }
+.case-stat .stat-icon {
+    width: 32px; height: 32px; border-radius: 50%; background: #edf9eb;
+    display: flex; align-items: center; justify-content: center;
+}
+.case-stat .stat-icon svg { width: 15px; height: 15px; fill: #3ca61c; }
+.case-stat .stat-num { font-size: 14.5px; font-weight: 800; color: #0b0f0c; }
+.case-stat .stat-label { font-size: 10.5px; color: #838f86; line-height: 1.3; }
+
+/* BARRA CTA */
+.cta-bar {
+    margin-top: 50px;
+    background: #0b0f0c;
+    border-radius: 18px;
+    padding: 28px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.cta-bar-left { display: flex; align-items: center; gap: 18px; }
+.cta-bar-icon {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1.5px solid #4ed924; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.cta-bar-icon svg { width: 20px; height: 20px; fill: #4ed924; }
+.cta-bar-text h3 { color: #ffffff; font-size: 16.5px; font-weight: 700; margin-bottom: 4px; }
+.cta-bar-text p { color: #9fb0a4; font-size: 13px; }
+.btn-cta-bar {
+    background: #3ca61c; color: #fff; padding: 13px 26px; border-radius: 20px;
+    font-weight: 700; font-size: 13.5px; text-decoration: none; white-space: nowrap; transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-cta-bar:hover { background: #4ed924; transform: translateY(-2px); }
+
+/* FOOTER */
+.site-footer { background-color: #0b0f0c; color: #b3bfae; padding: 60px 8% 25px; }
+.footer-grid { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 35px; border-bottom: 1px solid #1a231c; }
+.footer-col { flex: 1; min-width: 200px; }
+.footer-logo { height: 40px; margin-bottom: 14px; }
+.footer-col h5 { color: #ffffff; font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+.footer-col p, .footer-col a { display: block; color: #b3bfae; font-size: 13px; text-decoration: none; margin-bottom: 10px; line-height: 1.6; }
+.footer-col a:hover { color: #4ed924; }
+.footer-social { display: flex; gap: 12px; margin-top: 6px; }
+.footer-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #263528; display: flex; align-items: center; justify-content: center; margin-bottom: 0; }
+.footer-social svg { width: 16px; height: 16px; fill: #b3bfae; }
+.footer-social a:hover { border-color: #4ed924; }
+.footer-social a:hover svg { fill: #4ed924; }
+.footer-bottom { padding-top: 20px; font-size: 12px; color: #6c7a70; text-align: center; }
+
+@media (max-width: 1024px) {
+    .casos-hero-top { flex-direction: column; align-items: flex-start; }
+    .casos-hero-left, .casos-hero-divider, .casos-hero-right { max-width: 100%; }
+    .casos-hero-divider { border-left: none; border-top: 2px solid #2a3a2c; padding-left: 0; padding-top: 16px; }
+    .casos-hero-right { align-self: center; width: 100%; max-width: 320px; }
+    .case-card { width: calc(50% - 12px); }
+}
+@media (max-width: 768px) {
+    header { flex-direction: column; gap: 15px; padding: 20px; }
+    nav { gap: 15px; flex-wrap: wrap; justify-content: center; }
+    .casos-hero-left h1 { font-size: 30px; }
+    .case-card { width: 100%; }
+    .filter-pills { justify-content: center; }
+    .cta-bar { flex-direction: column; text-align: center; }
+    .cta-bar-left { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo-box">
+        <img class="logo-nav" src="Multimedia/logoblanco.png" alt="Brand Wolf Logo"
+            onerror="this.replaceWith(Object.assign(document.createElement('span'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;'}))">
+    </div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="nuestrostrabajos.html" class="active">Nuestros Trabajos</a>
+        <a href="recursos.html">Recursos</a>
+    </nav>
+    <a href="contacto.html" class="btn-contact-nav">Contáctanos →</a>
+</header>
+
+<!-- HERO -->
+<div class="casos-hero">
+    <div class="casos-hero-top">
+        <div class="casos-hero-left">
+            <span class="eyebrow">Nuestros trabajos</span>
+            <h1>CASOS <span>DE ÉXITO</span></h1>
+            <div class="sub">Estrategias reales, resultados que hablan.</div>
+            <p class="desc">Cada marca tiene una historia única. Nosotros creamos estrategias a la medida para lograr resultados reales y medibles.</p>
+        </div>
+        <div class="casos-hero-divider">
+            No solo hacemos marketing, creamos conexiones que <strong>impulsan marcas y generan crecimiento.</strong>
+        </div>
+        <div class="casos-hero-right">
+            <div class="img-slot">
+                <img src="Multimedia/logo.png" alt="Brand Wolf" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder">
+                    <span>Logo / imagen del lobo</span>
+                    <span class="file">Multimedia/logo.png</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="filter-pills">
+        <button class="filter-pill active" data-filter="todos" onclick="filtrarCasos(this)">Todos los proyectos</button>
+        <button class="filter-pill" data-filter="branding" onclick="filtrarCasos(this)">Branding</button>
+        <button class="filter-pill" data-filter="marketing-digital" onclick="filtrarCasos(this)">Marketing Digital</button>
+        <button class="filter-pill" data-filter="activaciones" onclick="filtrarCasos(this)">Activaciones</button>
+        <button class="filter-pill" data-filter="trade-marketing" onclick="filtrarCasos(this)">Trade Marketing</button>
+    </div>
+</div>
+
+<!-- GRID DE CASOS -->
+<div class="cases-section">
+    <div class="cases-grid">
+
+        <!-- CASO 1 -->
+        <div class="case-card" data-category="branding">
+            <div style="position:relative;">
+                <span class="case-badge">01</span>
+                <div class="img-slot">
+                    <img src="Multimedia/NUESTROS TRABAJOS/1.jpeg" alt="Caso de éxito: marca de cosmética" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                        <span>Foto del proyecto</span>
+                        <span class="file">images/caso-verde.jpg</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-body">
+                <div class="case-title">Verde</div>
+                <span class="case-category">Cosmética natural · Branding</span>
+                <div class="case-block">
+                    <h4>Reto</h4>
+                    <p>Una marca nueva que necesitaba darse a conocer y crear una comunidad desde cero.</p>
+                </div>
+                <div class="case-block">
+                    <h4>Nuestra solución</h4>
+                    <p>Desarrollamos su identidad visual, estrategia de contenidos y campaña de lanzamiento en redes.</p>
+                </div>
+                <div class="case-stats">
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+                        <div class="stat-num">+5.4K</div>
+                        <div class="stat-label">Nuevos seguidores</div>
+                    </div>
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M3 17h18v2H3v-2zm2.5-3 3-4 3 2.5 4-5.5L18.5 12H21l-5-8-4 5.5-3-2.5-4.5 6z"/></svg></div>
+                        <div class="stat-num">+240%</div>
+                        <div class="stat-label">Interacción en redes</div>
+                    </div>
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4z"/></svg></div>
+                        <div class="stat-num">+180%</div>
+                        <div class="stat-label">Ventas en 3 meses</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASO 2 -->
+        <div class="case-card" data-category="marketing-digital activaciones">
+            <div style="position:relative;">
+                <span class="case-badge">02</span>
+                <div class="img-slot">
+                    <img src="Multimedia/NUESTROS TRABAJOS/2.jpeg" alt="Caso de éxito: club de entrenamiento" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                        <span>Foto del proyecto</span>
+                        <span class="file">images/caso-fitzone.jpg</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-body">
+                <div class="case-title">FitZone</div>
+                <span class="case-category">Club de entrenamiento · Marketing digital</span>
+                <div class="case-block">
+                    <h4>Reto</h4>
+                    <p>Atraer más clientes al gimnasio y aumentar la frecuencia de visitas.</p>
+                </div>
+                <div class="case-block">
+                    <h4>Nuestra solución</h4>
+                    <p>Creamos una estrategia de contenido, campañas pagadas y promociones enfocadas en comunidad.</p>
+                </div>
+                <div class="case-stats">
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+                        <div class="stat-num">+1.8K</div>
+                        <div class="stat-label">Nuevos clientes</div>
+                    </div>
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V8h14v11z"/></svg></div>
+                        <div class="stat-num">+35%</div>
+                        <div class="stat-label">Reservas de clases</div>
+                    </div>
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M3 17h18v2H3v-2zm2.5-3 3-4 3 2.5 4-5.5L18.5 12H21l-5-8-4 5.5-3-2.5-4.5 6z"/></svg></div>
+                        <div class="stat-num">+70%</div>
+                        <div class="stat-label">Incremento mensual de ingresos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASO 3 -->
+        <div class="case-card" data-category="branding trade-marketing">
+            <div style="position:relative;">
+                <span class="case-badge">03</span>
+                <div class="img-slot">
+                    <img src="Multimedia/NUESTROS TRABAJOS/3.jpeg" alt="Caso de éxito: cafetería premium" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                        <span>Foto del proyecto</span>
+                        <span class="file">images/caso-cafeorigen.jpg</span>
+                    </div>
+                </div>
+            </div>
+            <div class="case-body">
+                <div class="case-title">Café Origen</div>
+                <span class="case-category">Experiencia premium · Trade marketing</span>
+                <div class="case-block">
+                    <h4>Reto</h4>
+                    <p>Posicionar la marca como una cafetería premium en un mercado competitivo.</p>
+                </div>
+                <div class="case-block">
+                    <h4>Nuestra solución</h4>
+                    <p>Rediseñamos su marca, creamos experiencias en punto de venta y activaciones en redes sociales.</p>
+                </div>
+                <div class="case-stats">
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 21c4.97-4.06 8-7.58 8-11a8 8 0 1 0-16 0c0 3.42 3.03 6.94 8 11zm0-9a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg></div>
+                        <div class="stat-num">+3.2K</div>
+                        <div class="stat-label">Comunidad fiel</div>
+                    </div>
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4z"/></svg></div>
+                        <div class="stat-num">+50%</div>
+                        <div class="stat-label">Visitas en tienda</div>
+                    </div>
+                    <div class="case-stat">
+                        <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                        <div class="stat-num">+4.8</div>
+                        <div class="stat-label">Calificación promedio</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CTA BAR -->
+    <div class="cta-bar">
+        <div class="cta-bar-left">
+            <div class="cta-bar-icon"><svg viewBox="0 0 24 24"><path d="M12 2c-2 3-4 6-4 9a4 4 0 0 0 8 0c0-3-2-6-4-9zm0 14a3 3 0 0 1-1-5.83V9h2v1.17A3 3 0 0 1 12 16zM6 21l1.5-3h9L18 21z"/></svg></div>
+            <div class="cta-bar-text">
+                <h3>¿Listo para que tu marca sea nuestro próximo caso de éxito?</h3>
+                <p>Hablemos de tu proyecto y creemos algo increíble juntos.</p>
+            </div>
+        </div>
+        <a href="contacto.html" class="btn-cta-bar">Agendar una reunión →</a>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <div style="color:#fff;font-weight:800;font-size:18px;margin-bottom:14px;">BRAND WOLF</div>
+            <p>Trade Marketing & Brand Experience.</p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/brand_wolfff?igsh=MTV3cW95NXZuZWU5cQ%3D%3D&utm_source=qr" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.15.5.5.9 1.11 1.15 1.77.25.64.42 1.37.47 2.43.05 1.06.06 1.42.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.42.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.7 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 0 1 5.45 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.2-8.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4z"/></svg></a>
+                <a href="https://www.tiktok.com/@brand__wolf?_r=1&_t=ZS-97xwMl4bSvI" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 2h-3v13.2a2.6 2.6 0 1 1-2-2.53V9.6a5.6 5.6 0 1 0 5 5.57V8.8a7.6 7.6 0 0 0 4.5 1.46V7.26A4.5 4.5 0 0 1 16.5 2z"/></svg></a>
+                <a href="https://wa.me/593994574637?text=Hola%20quiero%20información" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.36A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.08.8.82-3-.19-.31A8 8 0 1 1 12 20zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.63-1.18-1.4-1.31-1.64-.14-.24-.02-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h5>Navegación</h5>
+            <a href="index.html">Inicio</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="nuestrostrabajos.html">Nuestros Trabajos</a>
+            <a href="recursos.html">Recursos</a>
+        </div>
+        <div class="footer-col">
+            <h5>Contacto</h5>
+            <p>brandwolf2244@gmail.com</p>
+            <p>+593 99 457 4637</p>
+            <p>Quito, Ecuador</p>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 Brand Wolf. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+function filtrarCasos(btn) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const filtro = btn.getAttribute('data-filter');
+    document.querySelectorAll('.case-card').forEach(card => {
+        const cats = card.getAttribute('data-category');
+        card.style.display = (filtro === 'todos' || cats.includes(filtro)) ? '' : 'none';
+    });
+}
+</script>
+
+</body>
+</html>

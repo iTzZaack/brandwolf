@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Wolf - Recursos</title>
+<style>
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', 'Segoe UI', Helvetica, Arial, sans-serif; }
+        body { background-color: #f4f6f8; color: #333333; overflow-x: hidden; }
+
+        /* HEADER */
+        header {
+            background-color: #0b0f0c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1a231c;
+        }
+        .logo-box { display: flex; align-items: center; gap: 10px; }
+        .logo-nav { height: 80px; width: auto; }
+        nav { display: flex; gap: 25px; }
+        nav a { color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+        nav a:hover, nav a.active { color: #4ed924; border-bottom: 2px solid #4ed924; padding-bottom: 4px; }
+        .btn-contact-nav {
+            background-color: #3ca61c; color: white; padding: 10px 20px; border-radius: 20px;
+            font-size: 14px; font-weight: bold; text-decoration: none; transition: background 0.3s, transform 0.2s;
+        }
+        .btn-contact-nav:hover { background-color: #4ed924; transform: translateY(-2px); }
+
+        /* Eyebrow reutilizable */
+        .eyebrow {
+            color: #3ca61c; font-size: 14px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; display: block; margin-bottom: 12px;
+        }
+
+        /* IMG SLOT con placeholder */
+        .img-slot { position: relative; width: 100%; border-radius: 16px; overflow: hidden; background: #eef2ef; }
+        .img-slot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .img-placeholder {
+            display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center;
+            gap: 8px; text-align: center; padding: 20px;
+            background: repeating-linear-gradient(135deg, #eef2ef, #eef2ef 10px, #e4e9e5 10px, #e4e9e5 20px);
+            border: 2px dashed #b9c6bc; color: #5c6b60; font-size: 13px; font-weight: 600;
+        }
+        .img-placeholder svg { width: 30px; height: 30px; fill: #8da390; }
+        .img-placeholder span.file { color: #3ca61c; font-family: monospace; font-size: 12px; }
+
+        /* PAGE HERO (con arte decorativo del lobo) */
+        .blog-hero {
+            background: linear-gradient(135deg, #050806 0%, #111a13 50%, #080d09 100%);
+            padding: 90px 8% 130px;
+            position: relative;
+            overflow: hidden;
+        }
+        .blog-hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 85% 40%, rgba(78, 217, 36, 0.10) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        .blog-hero-content { max-width: 560px; position: relative; z-index: 2; }
+        .blog-hero h1 { color: #ffffff; font-size: 42px; line-height: 1.15; font-weight: 800; margin-bottom: 18px; letter-spacing: -1px; }
+        .blog-hero h1 span { color: #4ed924; }
+        .blog-hero p { color: #b3bfae; font-size: 15.5px; line-height: 1.6; }
+        .blog-hero-art {
+            position: absolute; right: 0; top: 0; height: 100%; width: 42%;
+            object-fit: cover; opacity: 0.9; z-index: 1;
+            -webkit-mask-image: linear-gradient(to left, black 55%, transparent 100%);
+            mask-image: linear-gradient(to left, black 55%, transparent 100%);
+        }
+
+        /* CONTENEDOR BLANCO SUPERPUESTO */
+        .resources-wrap {
+            background: #ffffff;
+            border-radius: 24px;
+            margin: -70px 4% 0;
+            padding: 50px 40px 10px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 5;
+        }
+        .resources-wrap h2 {
+            font-size: 15px; font-weight: 800; color: #0b0f0c; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 30px;
+        }
+
+        .resources-layout { display: flex; gap: 36px; align-items: flex-start; padding-bottom: 50px; }
+        .articles-col { flex: 3; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+
+        .blog-card {
+            text-align: left; background: #ffffff; border: 1px solid #eaeaea; border-radius: 16px;
+            overflow: hidden; transition: all 0.3s ease;
+        }
+        .blog-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(60,166,28,0.12); }
+        .blog-card .img-slot { aspect-ratio: 4/3; border-radius: 0; }
+        .blog-card .blog-body { padding: 18px; }
+        .blog-card .blog-date {
+            font-size: 11px; color: #3ca61c; font-weight: 700; text-transform: uppercase;
+            margin-bottom: 8px; display: block; letter-spacing: .5px;
+        }
+        .blog-card h3 { font-size: 15px; color: #0b0f0c; margin-bottom: 10px; line-height: 1.4; }
+        .blog-card p { font-size: 12.5px; color: #666; line-height: 1.5; margin-bottom: 14px; }
+        .blog-card .card-footer { display: flex; align-items: center; justify-content: space-between; }
+        .blog-card .card-date { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #8a938d; }
+        .blog-card .card-date svg { width: 13px; height: 13px; fill: #8a938d; }
+        .btn-leer-mas { font-size: 12.5px; font-weight: 700; color: #3ca61c; text-decoration: none; white-space: nowrap; }
+        .btn-leer-mas:hover { color: #4ed924; }
+
+        /* SIDEBAR */
+        .resources-sidebar { flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 22px; }
+        .sidebar-box { background: #f8faf9; border: 1px solid #eaeaea; border-radius: 16px; padding: 24px; }
+        .sidebar-box h4 { font-size: 13px; font-weight: 800; color: #0b0f0c; margin-bottom: 16px; text-transform: uppercase; letter-spacing: .5px; }
+        .category-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .category-list li a {
+            display: block; color: #555f58; font-size: 13.5px; text-decoration: none;
+            padding: 9px 12px; border-radius: 8px; transition: all 0.2s ease;
+        }
+        .category-list li a:hover { background: #edf9eb; color: #3ca61c; }
+
+        /* NEWSLETTER */
+        .newsletter-box {
+            background: #0b0f0c;
+            border-radius: 20px;
+            padding: 36px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        .newsletter-text h4 { color: #ffffff; font-size: 19px; font-weight: 800; margin-bottom: 8px; }
+        .newsletter-text p { color: #8da390; font-size: 13.5px; }
+        .newsletter-box form { display: flex; gap: 10px; flex-wrap: wrap; }
+        .newsletter-box input {
+            padding: 13px 18px; border-radius: 20px; border: 1px solid #263528;
+            background: #141a15; color: #fff; font-size: 13.5px; min-width: 220px; font-family: inherit;
+        }
+        .newsletter-box input::placeholder { color: #6c7a70; }
+        .newsletter-box input:focus { outline: none; border-color: #3ca61c; }
+        .newsletter-box button {
+            background: #3ca61c; color: #fff; border: none; padding: 13px 26px; border-radius: 20px;
+            font-weight: 700; font-size: 13.5px; cursor: pointer; transition: all 0.3s ease; white-space: nowrap;
+        }
+        .newsletter-box button:hover { background: #4ed924; }
+
+        /* CTA FINAL */
+        .cta-final { background: linear-gradient(120deg, #3ca61c 0%, #4ed924 100%); padding: 70px 8%; text-align: center; }
+        .cta-final h2 { color: #ffffff; font-size: 32px; font-weight: 800; margin-bottom: 26px; }
+        .btn-cta-final {
+            display: inline-block; background-color: #0b0f0c; color: #ffffff; padding: 16px 34px;
+            border-radius: 24px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.3s ease;
+        }
+        .btn-cta-final:hover { background-color: #1a231c; transform: translateY(-2px); }
+
+       /* FOOTER */
+        .site-footer { background-color: #0b0f0c; color: #b3bfae; padding: 60px 8% 25px; }
+        .footer-grid { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 35px; border-bottom: 1px solid #1a231c; }
+        .footer-col { flex: 1; min-width: 200px; }
+        .footer-logo { height: 40px; margin-bottom: 14px; }
+        .footer-col h5 { color: #ffffff; font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+        .footer-col p, .footer-col a { display: block; color: #b3bfae; font-size: 13px; text-decoration: none; margin-bottom: 10px; line-height: 1.6; }
+        .footer-col a:hover { color: #4ed924; }
+        .footer-social { display: flex; gap: 12px; margin-top: 6px; }
+        .footer-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #263528; display: flex; align-items: center; justify-content: center; margin-bottom: 0; }
+        .footer-social svg { width: 16px; height: 16px; fill: #b3bfae; }
+        .footer-social a:hover { border-color: #4ed924; }
+        .footer-social a:hover svg { fill: #4ed924; }
+        .footer-bottom { padding-top: 20px; font-size: 12px; color: #6c7a70; text-align: center; }
+
+        /* RESPONSIVO */
+        @media (max-width: 1024px) {
+            .blog-hero-art { width: 55%; opacity: 0.35; }
+            .resources-layout { flex-direction: column; }
+            .resources-sidebar { flex-direction: row; flex-wrap: wrap; width: 100%; }
+            .sidebar-box { flex: 1; min-width: 220px; }
+        }
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 20px; }
+            nav { gap: 15px; }
+            .blog-hero { padding: 60px 6% 100px; text-align: center; }
+            .blog-hero-content { max-width: 100%; }
+            .blog-hero h1 { font-size: 30px; }
+            .blog-hero-art { display: none; }
+            .resources-wrap { margin: -50px 4% 0; padding: 35px 20px 10px; }
+            .newsletter-box { flex-direction: column; text-align: center; }
+            .newsletter-box form { justify-content: center; width: 100%; }
+            .newsletter-box input { flex: 1; }
+            .footer-grid { flex-direction: column; }
+        }
+
+</style>
+</head>
+<body>
+
+    <!-- 1. HEADER / NAVEGACIÓN -->
+    <header>
+        <div class="logo-box">
+            <img class="logo-nav" src="Multimedia/logoblanco.png" alt="Brand Wolf Logo"
+                onerror="this.replaceWith(Object.assign(document.createElement('span'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;'}))">
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="nuestrostrabajos.html">Nuestros Trabajos</a>
+            <a href="recursos.html" class="active">Recursos</a>
+        </nav>
+        <a href="contacto.html" class="btn-contact-nav">Contáctanos →</a>
+    </header>
+
+    <!-- 2. ENCABEZADO DE PÁGINA CON ARTE DE FONDO -->
+    <div class="blog-hero">
+        <div class="blog-hero-content">
+            <span class="eyebrow">Recursos Brand Wolf</span>
+            <h1>Ideas, tendencias<br>y <span>estrategias</span></h1>
+            <p>Consejos prácticos, tendencias del marketing y herramientas para ayudarte a hacer crecer tu marca.</p>
+        </div>
+        <img class="blog-hero-art" src="Multimedia/logosimple.png" alt="" onerror="this.style.display='none'">
+    </div>
+
+    <!-- 3. CONTENIDO: ARTÍCULOS + SIDEBAR -->
+    <div class="resources-wrap">
+        <h2>Artículos recientes</h2>
+        <div class="resources-layout">
+
+            <!-- COLUMNA DE ARTÍCULOS -->
+            <div class="articles-col">
+                <div class="blog-grid">
+
+                    <div class="blog-card">
+                        <div class="img-slot">
+                            <img src="Multimedia/RECURSOS/1.jpeg" alt="Cómo definir el propósito de tu marca" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="img-placeholder">
+                                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                                <span>Imagen del artículo</span>
+                                <span class="file">images/recurso-1.jpg</span>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <span class="blog-date">Estrategia</span>
+                            <h3>Cómo definir el propósito de tu marca (y comunicarlo de verdad)</h3>
+                            <p>Descubre por qué tener un propósito claro conecta con las personas correctas y crea lealtad.</p>
+                            <div class="card-footer">
+                                <span class="card-date"><svg viewBox="0 0 24 24"><path d="M7 10h5v5H7z"/></svg>15 Mayo 2024</span>
+                                <a href="#" class="btn-leer-mas">Leer más →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-card">
+                        <div class="img-slot">
+                            <img src="Multimedia/RECURSOS/2.jpeg" alt="Ideas de contenido para redes sociales" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="img-placeholder">
+                                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                                <span>Imagen del artículo</span>
+                                <span class="file">images/recurso-2.jpg</span>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <span class="blog-date">Redes sociales</span>
+                            <h3>5 ideas de contenido que sí generan interacción</h3>
+                            <p>Contenido que conecta, vende y construye comunidad alrededor de tu marca.</p>
+                            <div class="card-footer">
+                                <span class="card-date"><svg viewBox="0 0 24 24"><path d="M7 10h5v5H7z"/></svg>8 Mayo 2024</span>
+                                <a href="#" class="btn-leer-mas">Leer más →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-card">
+                        <div class="img-slot">
+                            <img src="Multimedia/RECURSOS/3.jpeg" alt="Métricas de marketing digital" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="img-placeholder">
+                                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                                <span>Imagen del artículo</span>
+                                <span class="file">images/recurso-3.jpg</span>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <span class="blog-date">Marketing digital</span>
+                            <h3>Métricas que realmente importan para tu negocio</h3>
+                            <p>No se trata de tener muchos números, sino de medir lo que impulsa resultados.</p>
+                            <div class="card-footer">
+                                <span class="card-date"><svg viewBox="0 0 24 24"><path d="M7 10h5v5H7z"/></svg>1 Mayo 2024</span>
+                                <a href="#" class="btn-leer-mas">Leer más →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-card">
+                        <div class="img-slot">
+                            <img src="Multimedia/RECURSOS/4.jpeg" alt="Branding más que un logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="img-placeholder">
+                                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                                <span>Imagen del artículo</span>
+                                <span class="file">images/recurso-4.jpg</span>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <span class="blog-date">Branding</span>
+                            <h3>Branding: más que un logo, una experiencia</h3>
+                            <p>Tu marca es todo lo que las personas sienten y recuerdan de ti.</p>
+                            <div class="card-footer">
+                                <span class="card-date"><svg viewBox="0 0 24 24"><path d="M7 10h5v5H7z"/></svg>25 Abr 2024</span>
+                                <a href="#" class="btn-leer-mas">Leer más →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIDEBAR (sin el cuadro de sugerencia de tema) -->
+            <div class="resources-sidebar">
+                <div class="sidebar-box">
+                    <h4>Categorías</h4>
+                    <ul class="category-list">
+                        <li><a href="#">Estrategia</a></li>
+                        <li><a href="#">Redes sociales</a></li>
+                        <li><a href="#">Marketing digital</a></li>
+                        <li><a href="#">Branding</a></li>
+                        <li><a href="#">Trade marketing</a></li>
+                        <li><a href="#">Casos de éxito</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="newsletter-box">
+            <div class="newsletter-text">
+                <h4>Recibe contenido que impulsa tu marca</h4>
+                <p>Suscríbete y recibe tips, tendencias y recursos exclusivos cada mes.</p>
+            </div>
+            <form onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit">Suscribirme →</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4. CTA FINAL -->
+    <div class="cta-final">
+        <h2>¿Listo para hacer crecer tu marca?</h2>
+        <a href="contacto.html" class="btn-cta-final">Trabajemos juntos →</a>
+    </div>
+
+    <!-- 5. FOOTER -->
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img class="footer-logo" src="images/logo-brand-wolf.png" alt="Brand Wolf"
+                     onerror="this.replaceWith(Object.assign(document.createElement('div'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;margin-bottom:14px;'}))">
+                <p>Trade Marketing & Brand Experience.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/brand_wolfff?igsh=MTV3cW95NXZuZWU5cQ%3D%3D&utm_source=qr" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.15.5.5.9 1.11 1.15 1.77.25.64.42 1.37.47 2.43.05 1.06.06 1.42.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.42.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.7 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 0 1 5.45 2.53c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.2-8.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4z"/></svg></a>
+                    <a href="https://www.tiktok.com/@brand__wolf?_r=1&_t=ZS-97xwMl4bSvI" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 2h-3v13.2a2.6 2.6 0 1 1-2-2.53V9.6a5.6 5.6 0 1 0 5 5.57V8.8a7.6 7.6 0 0 0 4.5 1.46V7.26A4.5 4.5 0 0 1 16.5 2z"/></svg></a>
+                    <a href="https://wa.me/593994574637?text=Hola%20quiero%20información" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.36A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.08.8.82-3-.19-.31A8 8 0 1 1 12 20zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.63-1.18-1.4-1.31-1.64-.14-.24-.02-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Navegación</h5>
+                <a href="index.html">Inicio</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nuestrostrabajos.html">Nuestros Trabajos</a>
+                <a href="recursos.html">Recursos</a>
+            </div>
+            <div class="footer-col">
+                <h5>Contacto</h5>
+                <p>brandwolf2244@gmail.com</p>
+                <p>+593 99 457 4637</p>
+                <p>Quito, Ecuador</p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Brand Wolf. Todos los derechos reservados.</div>
+    </footer>
+
+</body>
+</html>
