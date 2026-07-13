@@ -408,7 +408,7 @@
                 padding: 15px 10px; 
             }
             .logo-nav { 
-                height: 45px; /* Reducimos el logo para que no se coma la pantalla */
+                height: 45px; 
             }
             nav { 
                 gap: 12px; 
@@ -464,11 +464,12 @@
         </div>
         <div class="hero-right">
             <div class="img-slot" style="aspect-ratio: 1/1; max-width: 420px; background: transparent;">
-                <img src="Multimedia/logosimple.png" alt="Brand Wolf" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <!-- SE CORRIGIÓ LA RUTA AQUÍ -->
+                <img class="hero-main-img" src="Multimedia/logosimple.png" alt="Brand Wolf" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="img-placeholder" style="border-radius: 16px;">
                     <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
                     <span>Ilustración: cabeza de lobo (isotipo grande)</span>
-                    <span class="file">images/brand-wolf-icono.png</span>
+                    <span class="file">Multimedia/logosimple.png</span>
                 </div>
             </div>
         </div>
@@ -547,7 +548,7 @@
             </div>
             <div>
                 <h4>¿Tienes un proyecto en mente?</h4>
-                <p>Hablemos y llevemos tu marca al siguiente nivel.</p>
+                <p>Hablemos y llevemos tu marca al siguiente level.</p>
             </div>
         </div>
         <a href="contacto.html" class="btn-banner">Hablemos de tu proyecto →</a>
@@ -597,7 +598,8 @@
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
-                <img class="footer-logo" src="images/logo-brand-wolf.png" alt="Brand Wolf"
+                <!-- Se corrigió la ruta de la imagen del footer aquí también (cambió images/ a Multimedia/) -->
+                <img class="footer-logo" src="Multimedia/logo-brand-wolf.png" alt="Brand Wolf"
                      onerror="this.replaceWith(Object.assign(document.createElement('div'),{innerText:'BRAND WOLF',style:'color:#fff;font-weight:800;font-size:18px;margin-bottom:14px;'}))">
                 <p>Trade Marketing & Brand Experience.</p>
                 <div class="footer-social">
